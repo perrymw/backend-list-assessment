@@ -26,12 +26,7 @@
 
 def match_ends(words):
     """This will check for any matches"""
-    count = 0
-    for word in words:
-        if len(word) >= 2:
-            if word[0] == word[-1]:
-                count += 1
-    return count
+    return len([word for word in words if len(word) >= 2 and word[0] == word [-1]])
 
 
 # B. front_x
@@ -44,14 +39,12 @@ def match_ends(words):
 def front_x(words):
     """This will order the list by ordering string with an x at the beginning and then sort the rest of the strings."""
     words.sort()
-    x_list = []
-    other_list = []
-    for word in words:
-        if word[0] == "x":
-            x_list.append(word)
-        else:
-            other_list.append(word)
-    return x_list + other_list
+    return [word for word in words if word[0] == "x"] + [word for word in words if word[0] != "x"]
+    # for word in words:
+    #     if word[0] == "x":
+    #         x_list.append(word)
+    #     else:
+    #         other_list.append(word)
 
 
 # C. sort_last
@@ -62,8 +55,7 @@ def front_x(words):
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
     """This will sort the tuples while using lambda as the function to sort by the second value."""
-    tuples.sort(key = lambda x: x[1])
-    return tuples
+    return tuples.sort(key = lambda x: x[-1])
 
 
 # Simple provided test() function used in main() to print

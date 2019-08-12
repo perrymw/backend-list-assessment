@@ -27,6 +27,11 @@ def remove_adjacent(nums):
         else:
             n += 1
     return nums
+    # # for x, y in zip(nums, nums[1:]):
+    #     if x == y:
+    #         nums.remove(x)
+    #     return nums
+
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -36,7 +41,7 @@ def remove_adjacent(nums):
 def linear_merge(list1, list2):
     """This will concatenate the two lists after sorting through them"""
     result_list = []
-    while len(list1) and len(list2):
+    while list1 and list2:
         if list1[0] < list2[0]:
             result_list.append(list1.pop(0))
         else:
