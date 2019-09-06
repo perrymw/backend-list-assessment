@@ -15,9 +15,23 @@
 # so [1, 2, 2, 3] returns [1, 2, 3]. You may create a new list or
 # modify the passed in list.
 # Hint: Don't use `set()`
+
 def remove_adjacent(nums):
-    """Your code goes here.  Edit this docstring."""
-    return
+    """This will remove adjacent numbers that are repeated"""
+    n = 1
+    k = len(nums)
+    while n < k:
+        if nums[n] == nums[n - 1]:
+            nums.pop(n)
+            k -= 1
+        else:
+            n += 1
+    return nums
+    # # for x, y in zip(nums, nums[1:]):
+    #     if x == y:
+    #         nums.remove(x)
+    #     return nums
+
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -25,9 +39,17 @@ def remove_adjacent(nums):
 # The solution should work in "linear" time, making a single pass of both lists.
 # Hint: Don't use `sort` or `sorted` -- they are not linear time.
 def linear_merge(list1, list2):
-    """Your code goes here.  Edit this docstring."""
-    return
-
+    """This will concatenate the two lists after sorting through them"""
+    result_list = []
+    while list1 and list2:
+        if list1[0] < list2[0]:
+            result_list.append(list1.pop(0))
+        else:
+            result_list.append(list2.pop(0))
+    if list1 == []:
+        return (result_list + list2)
+    else:
+        return (result_list + list1)
 
 
 # Simple provided test() function used in main() to print
@@ -50,11 +72,11 @@ def main():
 
     print('linear_merge')
     test(linear_merge(['aa', 'xx', 'zz'], ['bb', 'cc']),
-         ['aa', 'bb', 'cc', 'xx', 'zz'])
+        ['aa', 'bb', 'cc', 'xx', 'zz'])
     test(linear_merge(['aa', 'xx'], ['bb', 'cc', 'zz']),
-         ['aa', 'bb', 'cc', 'xx', 'zz'])
+        ['aa', 'bb', 'cc', 'xx', 'zz'])
     test(linear_merge(['aa', 'aa'], ['aa', 'bb', 'bb']),
-         ['aa', 'aa', 'aa', 'bb', 'bb'])
+        ['aa', 'aa', 'aa', 'bb', 'bb'])
 
 # Standard boilerplate (python idiom) to call the main() function.
 if __name__ == '__main__':
